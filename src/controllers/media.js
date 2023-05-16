@@ -1,4 +1,4 @@
-const Media = require('../Models/Media')
+const Media = require('../models/Media')
 
 exports.getAll = async (req, res) => {
   try {
