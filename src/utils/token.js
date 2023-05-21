@@ -22,7 +22,8 @@ const sendAccessToken = (res,accesstoken,user) =>{
 const sendRefreshToken = (res,refreshtoken,username) => {
    res.cookie('ref', refreshtoken, {
        httpOnly:true,
-       path: `api/auth/refresh_token/${username}`
+       path: `api/auth/refresh_token/${username}`,
+       maxAge:2*24*60*60*1000
    })
 }
 

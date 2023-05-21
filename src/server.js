@@ -4,7 +4,6 @@ const app = express()
 const http = require('http')
 const {Server} = require('socket.io')
 const cors = require('cors')
-const {faker} = require('@faker-js/faker')
 const connectDB = require('./db/db')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/user')
@@ -28,13 +27,13 @@ const User = require('./models/User')
 
 //middle wares
 app.use(cors({
-  origin: 'https://itslinkedinclone.onrender.com',
+  origin: 'http://localhost:3000',
   preflightContinue: false,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }))
 
-app.use("/public", express.static(path.join(__dirname, "/public")))
+// app.use("/public", express.static(path.join(__dirname, "/public")))
 
 app.use(express.json({limit:'50mb'})); //to support JSON-encoded bodies
 app.use(express.urlencoded({limit:'50mb',extended: true})) //support URL-encoded bodies
@@ -61,14 +60,12 @@ const server = http.createServer(app)
 
 const io = new Server(server,{
     cors: {
-      origin: 'https://itslinkedinclone.onrender.com'
+      origin: 'http://localhost:3000'
     },
   })
 
 socket(io)
   
-
-
 
 server.listen(process.env.PORT , ()=>{
   console.log('SERVER IS RUNNING')
